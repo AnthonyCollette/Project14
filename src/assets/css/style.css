@@ -2,54 +2,142 @@
     font-family: 'Rubik Regular';
     src: url('../../fonts/Rubik-Regular.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Rubik Bold';
     src: url('../../fonts/Rubik-Bold.ttf') format('truetype');
 }
 
 /* START NORMALIZE CSS */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 :root {
@@ -118,7 +206,8 @@ form {
     max-width: 90%;
 }
 
-.form-group, fieldset {
+.form-group,
+fieldset {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
@@ -138,8 +227,12 @@ fieldset legend {
     padding: 1rem;
 }
 
-input, select {
-    margin-top: 0.5rem;
+label {
+    margin-bottom: 0.5rem;
+}
+
+input,
+select {
     border: 2px solid var(--color-002);
     border-radius: 5px;
     padding: 0.5rem;
@@ -185,4 +278,66 @@ select {
 
 .back {
     margin-top: 2.5rem;
+}
+
+.smooth-select {
+    position: relative;
+}
+
+.smooth-select select {
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+
+.smooth-select svg {
+    transition: all 0.4s ease-in-out;
+}
+
+.smooth-select .open svg {
+    transform: rotate(-180deg);
+}
+
+.smooth-select .open ul {
+    display: block;
+    position: absolute;
+    background-color: white;
+    color: black;
+    top: calc(100% - 2px);
+    left: 0;
+    width: 100%;
+    border-radius: 0 0 5px;
+    padding: 5px 0;
+    box-shadow: inset 0 0 0 2px var(--color-002);
+    /* border: 2px solid var(--color-002); */
+    /* border-top: none; */
+}
+
+.smooth-select ul li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.smooth-select ul li:hover {
+    background-color: #DCDCDC;
+}
+
+.smooth-select--current {
+    background-color: white;
+    color: black;
+    padding: 8px 20px 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid var(--color-002);
+}
+
+.smooth-select--current svg {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.smooth-select ul {
+    display: none;
 }

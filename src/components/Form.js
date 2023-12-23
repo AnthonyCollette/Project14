@@ -1,6 +1,10 @@
 import React from 'react';
+import SmoothSelect from './SmoothSelect';
 
 const Form = () => {
+
+    const stateOptions = ['New York', 'Paris', 'Londres', 'Tokyo']
+
     return (
         <form>
             <div className='form-group'>
@@ -31,9 +35,7 @@ const Form = () => {
                 </div>
                 <div className='form-group'>
                     <label>State</label>
-                    <select name='city'>
-                        <option value='New York'>New York</option>
-                    </select>
+                    <SmoothSelect options={stateOptions} />
                 </div>
                 <div className='form-group'>
                     <label>Zip Code</label>
