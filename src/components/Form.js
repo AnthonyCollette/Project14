@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SmoothSelect from './SmoothSelect';
+import CustomizableModal from './CustomizableModal';
 
 const Form = () => {
 
     const stateOptions = ['New York', 'Paris', 'Londres', 'Tokyo']
     const departmentOptions = ['Sales', 'Marketing']
+    const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        setIsOpenModal(true)
+    }
 
     return (
         <form>
@@ -47,9 +54,11 @@ const Form = () => {
                 <label>Department</label>
                 <SmoothSelect options={departmentOptions} />
             </div>
-            <button className='btn'>
+            <button className='btn' onClick={handleClick}>
                 Save
             </button>
+            {isOpenModal && <CustomizableModal />}
+            
         </form>
     );
 };

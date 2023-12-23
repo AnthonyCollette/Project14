@@ -268,8 +268,13 @@ select {
     margin: 0 auto;
 }
 
-.filters select {
-    margin-right: 0.5rem;
+.filters > p {
+    display: flex;
+    align-items: center;
+}
+
+.filters .smooth-select {
+    margin: 0 0.5rem;
 }
 
 .filters label {
@@ -313,7 +318,6 @@ select {
     width: calc(100% - 4px);
     border-radius: 0 0 5px 5px;
     padding: 5px 0;
-    /* box-shadow: inset 0 0 0 2px var(--color-002); */
     border: 2px solid var(--color-002);
     border-top: none;
     z-index: -1;
@@ -331,7 +335,7 @@ select {
 .smooth-select--current {
     background-color: white;
     color: black;
-    padding: 8px 20px 8px 10px;
+    padding: 8px 30px 8px 10px;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
@@ -346,4 +350,18 @@ select {
 
 .smooth-select ul {
     display: none;
+}
+
+.customizable-modal {
+    position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 50px;
+    background-color: gray;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

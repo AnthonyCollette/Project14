@@ -1,27 +1,18 @@
 import React from 'react';
 import Table from '../components/Table';
 import { Link } from 'react-router-dom';
+import SmoothSelect from '../components/SmoothSelect';
 
 const Employees = () => {
+
+    const quantityOptions = ['10', '25', '50', '100']
 
     return (
         <main>
             <h1>Current Employees</h1>
             <div className='filters'>
-                <p>Show <select name='resultsQuantity'>
-                    <option value='10'>
-                        10
-                    </option>
-                    <option value='25'>
-                        25
-                    </option>
-                    <option value='50'>
-                        50
-                    </option>
-                    <option value='100'>
-                        100
-                    </option>
-                </select>
+                <p>Show 
+                    <SmoothSelect options={quantityOptions} />
                     entries
                 </p>
 
