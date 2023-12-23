@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SmoothSelect from './SmoothSelect';
 import CustomizableModal from './CustomizableModal';
 
@@ -6,10 +6,19 @@ const Form = () => {
 
     const stateOptions = ['New York', 'Paris', 'Londres', 'Tokyo']
     const departmentOptions = ['Sales', 'Marketing']
+    const [selectedState, setSelectedState] = useState()
+    const [selectedDepartment, setSelectedDepartment] = useState()
+    const handleSelectedState = (option) => {
+        setSelectedState(option)
+    }
+    const handleSelectedDepartment = (option) => {
+        setSelectedDepartment(option)
+    }
     const [isOpenModal, setIsOpenModal] = useState(false)
 
     const handleClick = (e) => {
         e.preventDefault()
+        console.log('State : ' + selectedState + ', department : ' + selectedDepartment)
         setIsOpenModal(true)
     }
 
@@ -43,7 +52,7 @@ const Form = () => {
                 </div>
                 <div className='form-group'>
                     <label>State</label>
-                    <SmoothSelect options={stateOptions} />
+                    <SmoothSelect options={stateOptions} selected={selectedState} handleSelected={handleSelectedState} />
                 </div>
                 <div className='form-group'>
                     <label>Zip Code</label>
@@ -52,7 +61,7 @@ const Form = () => {
             </fieldset>
             <div className='form-group'>
                 <label>Department</label>
-                <SmoothSelect options={departmentOptions} />
+                <SmoothSelect options={departmentOptions} selected={selectedDepartment} handleSelected={handleSelectedDepartment} />
             </div>
             <button className='btn' onClick={handleClick}>
                 Save

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const SmoothSelect = ({ options }) => {
+const SmoothSelect = ({ options, handleSelected, selected }) => {
 
     const select = useRef()
     const smoothSelect = useRef()
@@ -20,7 +20,7 @@ const SmoothSelect = ({ options }) => {
 
     function useClickOutside(ref, onClickOutside) {
         useEffect(() => {
-            
+
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
                     onClickOutside();
@@ -50,7 +50,7 @@ const SmoothSelect = ({ options }) => {
             </select>
             <div className={open ? 'smooth-select--container open' : 'smooth-select--container'} ref={smoothSelect}>
                 <p className='smooth-select--current' onClick={handleClick}>
-                    {selectedOption == '' ? options[0] : selectedOption}
+                    {selected ? selected : options[0] }
                     <svg fill="#000000" height="10px" width="10px" version="1.1" id="Layer_1"
                         viewBox="0 0 407.437 407.437">
                         <polygon points="386.258,91.567 203.718,273.512 21.179,91.567 0,112.815 203.718,315.87 407.437,112.815 " />
@@ -58,7 +58,9 @@ const SmoothSelect = ({ options }) => {
                 </p>
                 <ul>
                     {options.map((option) => {
-                        return <li onClick={() => handleSelectedOption(option)}>{option}</li>
+                        return <li onClick={() => {
+                            isOpen(false)
+                            handleSelected(option)}}>{option}</li>
                     })}
                 </ul>
             </div>
