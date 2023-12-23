@@ -4,6 +4,7 @@ const SmoothSelect = ({ options }) => {
 
     const select = useRef()
     const smoothSelect = useRef()
+    const smoothSelectBox = useRef()
 
     const [open, isOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('')
@@ -17,8 +18,29 @@ const SmoothSelect = ({ options }) => {
         isOpen(false)
     }
 
+    function useClickOutside(ref, onClickOutside) {
+        useEffect(() => {
+            
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    onClickOutside();
+                }
+            }
+
+            document.addEventListener("mousedown", handleClickOutside);
+
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref, onClickOutside]);
+    }
+
+    useClickOutside(smoothSelectBox, () => {
+        isOpen(false);
+    });
+
     return (
-        <div className='smooth-select'>
+        <div className='smooth-select' ref={smoothSelectBox}>
             <select name='city' ref={select}>
                 {options.map((option) => {
                     return <option value={option}>
