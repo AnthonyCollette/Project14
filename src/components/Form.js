@@ -4,6 +4,7 @@ import SmoothSelect from './SmoothSelect';
 const Form = () => {
 
     const stateOptions = ['New York', 'Paris', 'Londres', 'Tokyo']
+    const departmentOptions = ['Sales', 'Marketing']
 
     return (
         <form>
@@ -44,10 +45,7 @@ const Form = () => {
             </fieldset>
             <div className='form-group'>
                 <label>Department</label>
-                <select name="department">
-                    <option value="Sales">Sales</option>
-                    <option value="Marketing">Marketing</option>
-                </select>
+                <SmoothSelect options={departmentOptions} />
             </div>
             <button className='btn'>
                 Save
