@@ -1,0 +1,188 @@
+@font-face {
+    font-family: 'Rubik Regular';
+    src: url('../../fonts/Rubik-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Rubik Bold';
+    src: url('../../fonts/Rubik-Bold.ttf') format('truetype');
+}
+
+/* START NORMALIZE CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+    --color-001: #003049;
+    --color-002: #669bbc;
+    --color-003: #fdf0d5;
+    --color-004: #c1121f;
+    --color-005: #780000;
+}
+
+/* END NORMALIZE CSS */
+
+html {
+    font-size: 10px;
+}
+
+body * {
+    font-family: 'Rubik Regular';
+    font-size: 1.8rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: var(--color-001);
+    font-size: 6.8rem;
+    font-family: 'Rubik Bold';
+    margin: 5rem 0;
+}
+
+h2 {
+    color: var(--color-002);
+    font-size: 3.6rem;
+    margin: 2.5rem 0;
+}
+
+a {
+    color: var(--color-005);
+    text-decoration: none;
+}
+
+.link-w-arrow {
+    position: relative;
+    display: block;
+}
+
+.link-w-arrow svg {
+    transform: translateY(6px) translateX(10px);
+    transition: all 0.2s ease-in-out;
+}
+
+.link-w-arrow svg path {
+    fill: var(--color-005);
+}
+
+.link-w-arrow:hover svg {
+    transform: translateY(6px) translateX(30px);
+}
+
+form {
+    width: 300px;
+    max-width: 90%;
+}
+
+.form-group, fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+fieldset {
+    border: none;
+    background-color: var(--color-001);
+    color: white;
+    padding: 1.5rem;
+}
+
+fieldset legend {
+    margin-bottom: 1rem;
+    color: white;
+    background-color: var(--color-002);
+    padding: 1rem;
+}
+
+input, select {
+    margin-top: 0.5rem;
+    border: 2px solid var(--color-002);
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+select {
+    cursor: pointer;
+}
+
+.btn {
+    display: block;
+    margin: 0 auto;
+    background-color: var(--color-002);
+    color: var(--color-001);
+    padding: 1rem 5rem;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: var(--color-001);
+    color: var(--color-002);
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1400px;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.filters select {
+    margin-right: 0.5rem;
+}
+
+.filters label {
+    margin-right: 1rem;
+}
+
+.back {
+    margin-top: 2.5rem;
+}
