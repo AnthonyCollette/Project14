@@ -7,15 +7,9 @@ const SmoothSelect = ({ options, handleSelected, selected }) => {
     const smoothSelectBox = useRef()
 
     const [open, isOpen] = useState(false)
-    const [selectedOption, setSelectedOption] = useState('')
 
     const handleClick = () => {
         isOpen(!open)
-    }
-
-    const handleSelectedOption = (option) => {
-        setSelectedOption(option)
-        isOpen(false)
     }
 
     function useClickOutside(ref, onClickOutside) {
