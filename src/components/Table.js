@@ -74,6 +74,7 @@ const Table = () => {
 
     const handleChange = (e) => {
         setNumberOfResults(Number(e.target.value))
+        setActualPage(0)
     }
 
     const handlePrev = () => {
