@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-table": "^8.11.2",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "sass": "^1.69.5"
