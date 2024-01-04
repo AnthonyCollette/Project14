@@ -1,13 +1,15 @@
 import React from 'react';
+import { IoClose } from "react-icons/io5";
 
-const CustomizableModal = () => {
+const CustomizableModal = ({ color, title, text, btnStyle }) => {
+
     return (
         <div className='customizable-modal'>
-            <h2>Title</h2>
-            <p>Description un peu longue de quelques lignes pour voir ce que ça peut rendre. Description un peu longue de quelques lignes pour voir ce que ça peut rendre. Description un peu longue de quelques lignes pour voir ce que ça peut rendre. Description un peu longue de quelques lignes pour voir ce que ça peut rendre.</p>
-            <button className='btn'>
-                Close
-            </button>
+            <div className='customizable-modal--overlay'>
+                {title && <h2 style={{ 'color': color }}>{title}</h2>}
+                {text && <p style={{ 'color': color }}>{text}</p>}
+                {btnStyle && <div className='btn--cross'><IoClose /></div>}
+            </div>
         </div>
     );
 };
