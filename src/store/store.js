@@ -14,7 +14,5 @@ const rootReducer = combineReducers({
 })
 
 export const store = configureStore({
-    reducer: {
-        users: usersSlice.reducer
-    }
+    reducer: rootReducer,
 })
