@@ -272,7 +272,7 @@ select {
     margin: 0 auto 30px;
 }
 
-.filters > p {
+.filters>p {
     display: flex;
     align-items: center;
 }
@@ -300,7 +300,10 @@ select {
     position: absolute;
 }
 
-.smooth-select select:focus-visible, .smooth-select select:focus, .smooth-select select:active, .smooth-select select:focus-within {
+.smooth-select select:focus-visible,
+.smooth-select select:focus,
+.smooth-select select:active,
+.smooth-select select:focus-within {
     outline: none;
 }
 
@@ -364,7 +367,8 @@ select {
     display: flex;
 }
 
-.table .td, .table .th {
+.table .td,
+.table .th {
     padding: 10px;
     flex: 1 1 0;
     width: 0;
@@ -435,4 +439,18 @@ select {
     justify-content: center;
     padding: 2px;
     cursor: pointer;
+}
+
+input[aria-invalid="true"] {
+    border-color: red;
+}
+
+label:has(~input[aria-invalid="true"]) {
+    color: red;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
 }

@@ -9,8 +9,7 @@ const Homepage = () => {
     const handleCrossBtn = () => {
         isOpenModal(false)
     }
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
+    const handleFormSubmit = () => {
         isOpenModal(true)
     }
 
