@@ -1,11 +1,13 @@
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import mockedData from '../mocks/data'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaSort, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import GlobalFilter from './GlobalFilter';
 
 const Table = () => {
 
     const [columnFilters, setColumnFilters] = useState([])
+    const [globalFilters, setGlobalFilters] = useState('')
     const [numberOfResults, setNumberOfResults] = useState(10)
     const [actualPage, setActualPage] = useState(0)
 
@@ -60,12 +62,14 @@ const Table = () => {
             pagination: {
                 pageSize: numberOfResults,
                 pageIndex: actualPage
-            }
+            },
+            globalFilter: globalFilters,
         },
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        onGlobalFilterChange: setGlobalFilters,
     })
 
     const firstName = columnFilters.find(
@@ -84,11 +88,6 @@ const Table = () => {
         setActualPage(actualPage + 1)
     }
 
-    const onFilterChange = (id, value) => setColumnFilters(
-        filters => filters.filter(f => f.id !== f.id).concat({
-            id, value
-        })
-    )
     return (
         <div className='table'>
             <div className='filters'>
@@ -102,12 +101,7 @@ const Table = () => {
                     entries
                 </p>
 
-                <div className='search'>
-                    <label htmlFor="search">
-                        Search
-                    </label>
-                    <input type="text" name="search" value={firstName} onChange={(e) => onFilterChange('firstName', e.target.value)} />
-                </div>
+                <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} />
             </div>
             {table.getHeaderGroups().map(headerGroup => <div className='tr' key={headerGroup.id}>
                 {headerGroup.headers.map(header => <div className='th' key={header.id}>
@@ -130,18 +124,18 @@ const Table = () => {
                 </div>)
             }
             <div className='table-bottom'>
-                    <p>
+                <p>
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-                    </p>
-                    <div className='pagination'>
-                        <button onClick={handlePrev} disabled={!table.getCanPreviousPage()}>
-                            <FaChevronLeft />
-                        </button>
-                        <button onClick={handleNext}
+                </p>
+                <div className='pagination'>
+                    <button onClick={handlePrev} disabled={!table.getCanPreviousPage()}>
+                        <FaChevronLeft />
+                    </button>
+                    <button onClick={handleNext}
                         disabled={!table.getCanNextPage()}>
-                            <FaChevronRight />
-                        </button>
-                    </div>
+                        <FaChevronRight />
+                    </button>
+                </div>
             </div>
         </div>
     );
