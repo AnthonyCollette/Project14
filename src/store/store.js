@@ -6,6 +6,11 @@ const usersSlice = createSlice({
     name: 'users',
     initialState: {
         users: mockedData
+    },
+    reducers: {
+        addUser: (state, action) => {
+            state.users = [...state.users, action.payload]
+        }
     }
 })
 

@@ -1,14 +1,33 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import {addUser} from '../store/store';
 
 const Form = ({ handleFormSubmit }) => {
+
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm()
 
+    const dispatch = useDispatch()
+
     const onSubmit = (data) => {
-        console.log(data)
+        let id = Math.round((Date.now() + Math.random()))
+        dispatch({
+            type: 'users/addUser',
+            payload: {
+                id,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                startDate: data.startDate.toLocaleDateString("en-US"),
+                department: data.department,
+                birthDate: data.birthDate.toLocaleDateString("en-US"),
+                street: data.street,
+                city: data.city,
+                zip: data.zip
+            },
+        })
         handleFormSubmit()
     }
 
