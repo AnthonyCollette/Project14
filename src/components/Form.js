@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import {addUser} from '../store/store';
 
 const Form = ({ handleFormSubmit }) => {
 
@@ -12,7 +11,7 @@ const Form = ({ handleFormSubmit }) => {
 
     const dispatch = useDispatch()
 
-    const onSubmit = (data) => {
+    const onSubmit = (data, e) => {
         let id = Math.round((Date.now() + Math.random()))
         dispatch({
             type: 'users/addUser',
@@ -28,6 +27,7 @@ const Form = ({ handleFormSubmit }) => {
                 zip: data.zip
             },
         })
+        e.target.reset()
         handleFormSubmit()
     }
 

@@ -1,8 +1,8 @@
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
-import mockedData from '../mocks/data'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSort, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import GlobalFilter from './GlobalFilter';
+import { useSelector } from 'react-redux';
 
 const Table = () => {
 
@@ -53,9 +53,11 @@ const Table = () => {
             cell: (props) => <p>{props.getValue()}</p>
         },
     ]
+    
+    const users = useSelector(state => state.users.users)
 
     const table = useReactTable({
-        data: mockedData,
+        data: users,
         columns,
         state: {
             columnFilters,
@@ -93,15 +95,14 @@ const Table = () => {
             <div className='filters'>
                 <p>Show
                     <select onChange={handleChange}>
-                        <option value={10}>10</option>
-                        <option value={25}>25</option>
-                        <option value={50}>50</option>
-                        <option value={100}>100</option>
+                        {[10, 25, 50, 100].map((number, index) => {
+                            return <option value={number} key={index}>{number}</option>
+                        })}
                     </select>
                     entries
                 </p>
 
-                <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} />
+                <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
             {table.getHeaderGroups().map(headerGroup => <div className='tr' key={headerGroup.id}>
                 {headerGroup.headers.map(header => <div className='th' key={header.id}>
