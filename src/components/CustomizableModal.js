@@ -1,14 +1,27 @@
 import React from 'react';
 import { IoClose } from "react-icons/io5";
 
-const CustomizableModal = ({ color, title, text, btnStyle, handleCrossBtn }) => {
+const CustomizableModal = ({ color, title, text, btnFilled, btnOutline, btnText, handleCrossBtn, btnBorderRadius, btnPadding, btnAlign, textAlign, titleAlign, crossColor, btnCross }) => {
+
+    const btnPosition = () => {
+        switch (btnAlign) {
+            case 'left':
+                return '0 auto 0 0'
+            case 'center':
+                return '0 auto'
+            case 'right':
+                return '0 0 0 auto'
+        }
+    }
 
     return (
         <div className='customizable-modal'>
             <div className='customizable-modal--overlay'>
-                {title && <h2 style={{ 'color': color }}>{title}</h2>}
-                {text && <p style={{ 'color': color }}>{text}</p>}
-                {btnStyle && <div className='btn--cross' onClick={handleCrossBtn}><IoClose /></div>}
+                {title && <h2 style={{ 'color': color, 'textAlign': titleAlign }}>{title}</h2>}
+                {text && <p style={{ 'color': color, 'textAlign': textAlign }}>{text}</p>}
+                {btnFilled && <button style={{ 'backgroundColor': color, 'color': 'white', 'border': `1px solid ${color}`, 'borderRadius': btnBorderRadius, 'padding': btnPadding, 'margin': btnPosition() }}>{btnText || ''}</button>}
+                {btnOutline && <button style={{ 'backgroundColor': 'transparent', 'color': color, 'border': '1px solid white', 'borderRadius': btnBorderRadius }}>{btnText || ''}</button>}
+                {btnCross && <div className='btn--cross' onClick={handleCrossBtn} style={{ backgroundColor: crossColor }}><IoClose /></div>}
             </div>
         </div>
     );

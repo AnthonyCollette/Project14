@@ -424,6 +424,18 @@ select {
     max-width: 90%;
 }
 
+.customizable-modal--overlay p {
+    margin-bottom: 10px;
+}
+
+.customizable-modal--overlay button {
+    display: block;
+}
+
+.customizable-modal--overlay p:last-of-type {
+    margin-bottom: 30px;
+}
+
 .btn--cross {
     position: absolute;
     top: -10px;
@@ -453,4 +465,8 @@ label:has(~input[aria-invalid="true"]) {
     color: red;
     margin-top: 5px;
     font-size: 14px;
+}
+
+button {
+    cursor: pointer;
 }

@@ -74,10 +74,6 @@ const Table = () => {
         onGlobalFilterChange: setGlobalFilters,
     })
 
-    const firstName = columnFilters.find(
-        filter => filter.id === 'firstName'
-    )?.value || ''
-
     const handleChange = (e) => {
         setNumberOfResults(Number(e.target.value))
         setActualPage(0)
