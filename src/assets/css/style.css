@@ -173,9 +173,10 @@ main {
 
 h1 {
     color: var(--color-001);
-    font-size: 6.8rem;
+    font-size: 4rem;
     font-family: 'Rubik Bold';
     margin: 5rem 0;
+    text-align: center;
 }
 
 h2 {
@@ -270,6 +271,8 @@ select {
     align-items: center;
     justify-content: space-between;
     margin: 0 auto 30px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .filters>p {
@@ -365,6 +368,8 @@ select {
 
 .table .tr {
     display: flex;
+    min-width: 1100px;
+    overflow-x: auto;
 }
 
 .table .td,
@@ -383,6 +388,14 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.table-bottom {
+    margin-top: 20px;
 }
 
 .chevrons {
@@ -469,4 +482,10 @@ label:has(~input[aria-invalid="true"]) {
 
 button {
     cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+    h1 {
+        font-size: 6.8rem;
+    }
 }

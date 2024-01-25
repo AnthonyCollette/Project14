@@ -100,6 +100,7 @@ const Table = () => {
 
                 <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
+            <div className='table-wrapper'>
             {table.getHeaderGroups().map(headerGroup => <div className='tr' key={headerGroup.id}>
                 {headerGroup.headers.map(header => <div className='th' key={header.id}>
                     {header.column.columnDef.header}
@@ -120,6 +121,7 @@ const Table = () => {
                     </div>)}
                 </div>)
             }
+            </div>
             <div className='table-bottom'>
                 <p>
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
