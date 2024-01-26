@@ -489,3 +489,7 @@ button {
         font-size: 6.8rem;
     }
 }
+
+.close-icon {
+    width: 15px;
+}
