@@ -1,5 +1,5 @@
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaSort, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import GlobalFilter from './GlobalFilter';
 import { useSelector } from 'react-redux';
@@ -89,14 +89,14 @@ const Table = () => {
     return (
         <div className='table'>
             <div className='filters'>
-                <p>Show
+                <label>Show
                     <select onChange={handleChange}>
                         {[10, 25, 50, 100].map((number, index) => {
                             return <option value={number} key={index}>{number}</option>
                         })}
                     </select>
                     entries
-                </p>
+                </label>
 
                 <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
@@ -127,11 +127,11 @@ const Table = () => {
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                 </p>
                 <div className='pagination'>
-                    <button onClick={handlePrev} disabled={!table.getCanPreviousPage()}>
+                    <button onClick={handlePrev} disabled={!table.getCanPreviousPage()} aria-label='Previous page'>
                         <FaChevronLeft />
                     </button>
                     <button onClick={handleNext}
-                        disabled={!table.getCanNextPage()}>
+                        disabled={!table.getCanNextPage()} aria-label='Next page'>
                         <FaChevronRight />
                     </button>
                 </div>

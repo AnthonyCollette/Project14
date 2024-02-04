@@ -1,11 +1,13 @@
 @font-face {
     font-family: 'Rubik Regular';
     src: url('../../fonts/Rubik-Regular.ttf') format('truetype');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Rubik Bold';
     src: url('../../fonts/Rubik-Bold.ttf') format('truetype');
+    font-display: swap;
 }
 
 /* START NORMALIZE CSS */
@@ -229,8 +231,9 @@ fieldset {
 
 fieldset legend {
     margin-bottom: 1rem;
-    color: white;
-    background-color: var(--color-002);
+    background-color: white;
+    color: var(--color-001);
+    border: 1px solid var(--color-001);
     padding: 1rem;
 }
 
