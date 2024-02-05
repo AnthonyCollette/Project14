@@ -48,6 +48,11 @@ const Table = () => {
             cell: (props) => <p>{props.getValue()}</p>
         },
         {
+            accessorKey: 'state',
+            header: "State",
+            cell: (props) => <p>{props.getValue()}</p>
+        },
+        {
             accessorKey: 'zip',
             header: "Zip Code",
             cell: (props) => <p>{props.getValue()}</p>

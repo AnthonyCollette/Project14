@@ -1,8 +1,6 @@
 import React from 'react';
 import Table from '../components/Table';
 import { Link } from 'react-router-dom';
-import SmoothSelect from '../components/SmoothSelect';
-import Form from '../components/Form';
 
 const Employees = () => {
 
