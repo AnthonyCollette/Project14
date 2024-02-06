@@ -35,7 +35,8 @@ const Table = () => {
         {
             accessorKey: 'birthDate',
             header: "Date of Birth",
-            cell: (props) => <p>{props.getValue()}</p>
+            cell: (props) => <p>{props.getValue()}</p>,
+            sortType: 'datetime'
         },
         {
             accessorKey: 'street',
