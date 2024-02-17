@@ -2,6 +2,7 @@ import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel
 import { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { BsChevronExpand, BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { LuChevronFirst, LuChevronLast } from "react-icons/lu";
 import GlobalFilter from './GlobalFilter';
 import { useSelector } from 'react-redux';
 
@@ -77,7 +78,7 @@ const Table = () => {
             cell: (props) => <p>{props.getValue()}</p>
         },
     ]
-    
+
     const users = useSelector(state => state.users.users)
 
     const table = useReactTable({
@@ -111,6 +112,17 @@ const Table = () => {
         setActualPage(actualPage + 1)
     }
 
+    const handleFirstPage = () => {
+        setActualPage(0)
+    }
+
+    const handleTwoPagesBefore = () => {
+        setActualPage(actualPage - 2)
+    }
+    const handleTwoPagesAfter = () => {
+        setActualPage(actualPage + 2)
+    }
+
     return (
         <div className='table'>
             <div className='filters'>
@@ -126,43 +138,50 @@ const Table = () => {
                 <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
             <div className='table-wrapper'>
-            {table.getHeaderGroups().map(headerGroup => <tr className='tr' key={headerGroup.id}>
-                {headerGroup.headers.map(header => <th className='th' key={header.id}>
-                    {header.column.columnDef.header}
-                    <div className='chevrons'>                 
-                        {header.column.getCanSort() && !header.column.getIsSorted() && <BsChevronExpand onClick={header.column.getToggleSortingHandler()} />}
-                        {{
-                            asc: <BsChevronUp onClick={header.column.getToggleSortingHandler()} />,
-                            desc: <BsChevronDown onClick={header.column.getToggleSortingHandler()} />,
-                        }[header.column.getIsSorted()]}  
-                    </div>
-                </th>)}
-            </tr>)}
-            {
-                table.getRowModel().rows.map(row => <div className='tr' key={row.id}>
-                    {row.getVisibleCells().map(cell => <div className='td' key={cell.id}>
-                        {
-                            flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext()
-                            )
-                        }
-                    </div>)}
-                </div>)
-            }
+                {table.getHeaderGroups().map(headerGroup => <tr className='tr' key={headerGroup.id}>
+                    {headerGroup.headers.map(header => <th className='th' key={header.id}>
+                        {header.column.columnDef.header}
+                        <div className='chevrons'>
+                            {header.column.getCanSort() && !header.column.getIsSorted() && <BsChevronExpand onClick={header.column.getToggleSortingHandler()} />}
+                            {{
+                                asc: <BsChevronUp onClick={header.column.getToggleSortingHandler()} />,
+                                desc: <BsChevronDown onClick={header.column.getToggleSortingHandler()} />,
+                            }[header.column.getIsSorted()]}
+                        </div>
+                    </th>)}
+                </tr>)}
+                {
+                    table.getRowModel().rows.map(row => <div className='tr' key={row.id}>
+                        {row.getVisibleCells().map(cell => <div className='td' key={cell.id}>
+                            {
+                                flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext()
+                                )
+                            }
+                        </div>)}
+                    </div>)
+                }
             </div>
             <div className='table-bottom'>
                 <p>
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                 </p>
                 <div className='pagination'>
-                    <button onClick={handlePrev} disabled={!table.getCanPreviousPage()} aria-label='Previous page'>
+                    {table.getCanPreviousPage() && <button aria-label='First Page' onClick={handleFirstPage}><LuChevronFirst /></button>}
+                    {table.getCanPreviousPage() && <button onClick={handlePrev} aria-label='Previous page'>
                         <FaChevronLeft />
-                    </button>
-                    <button onClick={handleNext}
-                        disabled={!table.getCanNextPage()} aria-label='Next page'>
+                    </button>}
+                    {actualPage >= 2 && <button className='pagination__number' onClick={handleTwoPagesBefore}>{actualPage - 1}</button>}
+                    {actualPage >= 1 && <button className='pagination__number' onClick={handlePrev}>{actualPage}</button>}
+                    <p className='pagination__number'>{actualPage + 1}</p>
+                    {actualPage <= table.getPageCount() - 2 && <button className='pagination__number' onClick={handleNext}>{actualPage + 2}</button>}
+                    {actualPage <= table.getPageCount() - 3 && <button className='pagination__number' onClick={handleTwoPagesAfter}>{actualPage + 3}</button>}
+                    {table.getCanNextPage() && <button onClick={handleNext}
+                        aria-label='Next page'>
                         <FaChevronRight />
-                    </button>
+                    </button>}
+                    {table.getCanNextPage() && <button aria-label='Last Page' onClick={() => setActualPage(table.getPageCount() - 1)}><LuChevronLast /></button>}
                 </div>
             </div>
         </div>

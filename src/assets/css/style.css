@@ -496,3 +496,16 @@ button {
 .close-icon {
     width: 15px;
 }
+
+.pagination__number, .pagination button {
+    border: none;
+    background-color: transparent;
+    margin: 0 5px;
+}
+
+p.pagination__number {
+    color: var(--color-002);
+    line-height: 0;
+    padding: 0 5px;
+    font-size: 2.4rem;
+}
