@@ -1,6 +1,7 @@
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import { useState } from 'react';
-import { FaSort, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { BsChevronExpand, BsChevronDown, BsChevronUp } from "react-icons/bs";
 import GlobalFilter from './GlobalFilter';
 import { useSelector } from 'react-redux';
 
@@ -25,7 +26,16 @@ const Table = () => {
         {
             accessorKey: 'startDate',
             header: "Start Date",
-            cell: (props) => <p>{props.getValue()}</p>
+            cell: (props) => <p>{props.getValue()}</p>,
+            sortingFn: (
+                rowA,
+                rowB,
+                columnId
+            ) => {
+                const dateA = new Date(rowA.getValue(columnId))
+                const dateB = new Date(rowB.getValue(columnId))
+                return dateA < dateB ? 1 : dateA > dateB ? -1 : 0
+            }
         },
         {
             accessorKey: 'department',
@@ -36,7 +46,15 @@ const Table = () => {
             accessorKey: 'birthDate',
             header: "Date of Birth",
             cell: (props) => <p>{props.getValue()}</p>,
-            sortType: 'datetime'
+            sortingFn: (
+                rowA,
+                rowB,
+                columnId
+            ) => {
+                const dateA = new Date(rowA.getValue(columnId))
+                const dateB = new Date(rowB.getValue(columnId))
+                return dateA < dateB ? 1 : dateA > dateB ? -1 : 0
+            }
         },
         {
             accessorKey: 'street',
@@ -65,6 +83,7 @@ const Table = () => {
     const table = useReactTable({
         data: users,
         columns,
+        enableSortingRemoval: false,
         state: {
             columnFilters,
             pagination: {
@@ -107,14 +126,18 @@ const Table = () => {
                 <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
             <div className='table-wrapper'>
-            {table.getHeaderGroups().map(headerGroup => <div className='tr' key={headerGroup.id}>
-                {headerGroup.headers.map(header => <div className='th' key={header.id}>
+            {table.getHeaderGroups().map(headerGroup => <tr className='tr' key={headerGroup.id}>
+                {headerGroup.headers.map(header => <th className='th' key={header.id}>
                     {header.column.columnDef.header}
-                    <div className='chevrons'>
-                        {header.column.getCanSort() && <FaSort onClick={header.column.getToggleSortingHandler()} />}
+                    <div className='chevrons'>                 
+                        {header.column.getCanSort() && !header.column.getIsSorted() && <BsChevronExpand onClick={header.column.getToggleSortingHandler()} />}
+                        {{
+                            asc: <BsChevronUp onClick={header.column.getToggleSortingHandler()} />,
+                            desc: <BsChevronDown onClick={header.column.getToggleSortingHandler()} />,
+                        }[header.column.getIsSorted()]}  
                     </div>
-                </div>)}
-            </div>)}
+                </th>)}
+            </tr>)}
             {
                 table.getRowModel().rows.map(row => <div className='tr' key={row.id}>
                     {row.getVisibleCells().map(cell => <div className='td' key={cell.id}>
