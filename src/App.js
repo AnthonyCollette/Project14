@@ -6,7 +6,7 @@ import Employees from './views/Employees';
 function App() {
     
   return (
-    <div classNameName="App">
+    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />

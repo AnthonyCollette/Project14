@@ -1,4 +1,4 @@
-import { createSlice, configureStore, combineReducers } from '@reduxjs/toolkit'
+import { createSlice, configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit'
 import mockedData from '../mocks/data'
 import persistReducer from 'redux-persist/es/persistReducer'
 import persistStore from 'redux-persist/es/persistStore'
@@ -28,7 +28,11 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-    reducer: persistedReducer
+    reducer: persistedReducer,  
+    middleware: getDefaultMiddleware => 
+        getDefaultMiddleware({
+            serializableCheck: false
+        })
 })
 
 export const persistor = persistStore(store)

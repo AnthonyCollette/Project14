@@ -138,8 +138,8 @@ const Table = () => {
                 <GlobalFilter setGlobalFilters={setGlobalFilters} value={globalFilters} setActualPage={setActualPage} />
             </div>
             <div className='table-wrapper'>
-                {table.getHeaderGroups().map(headerGroup => <tr className='tr' key={headerGroup.id}>
-                    {headerGroup.headers.map(header => <th className='th' key={header.id}>
+                {table.getHeaderGroups().map(headerGroup => <div className='tr' key={headerGroup.id}>
+                    {headerGroup.headers.map(header => <div className='th' key={header.id}>
                         {header.column.columnDef.header}
                         <div className='chevrons'>
                             {header.column.getCanSort() && !header.column.getIsSorted() && <BsChevronExpand onClick={header.column.getToggleSortingHandler()} />}
@@ -148,8 +148,8 @@ const Table = () => {
                                 desc: <BsChevronDown onClick={header.column.getToggleSortingHandler()} />,
                             }[header.column.getIsSorted()]}
                         </div>
-                    </th>)}
-                </tr>)}
+                    </div>)}
+                </div>)}
                 {
                     table.getRowModel().rows.map(row => <div className='tr' key={row.id}>
                         {row.getVisibleCells().map(cell => <div className='td' key={cell.id}>
